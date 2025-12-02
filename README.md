@@ -1,7 +1,8 @@
 # Advent of Code 2025
 
 I will only do the problems that I feel like doing
-I will only work on this when I feel like it
+
+I will only work on this when I feel like it & solutions will be rather gross
 
 ```shell
 uv init
