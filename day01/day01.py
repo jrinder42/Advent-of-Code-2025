@@ -5,7 +5,7 @@ Advent of Code 2025 - Day 1
 """
 
 from ast import literal_eval
-from copy import deepcopy
+
 
 lines = []
 with open("day01.txt", "r") as file:
@@ -43,7 +43,8 @@ print(f'Advent of Code Day 1 Answer Part 1: {count}')
 
 def countdown_left(num, init_val):
     clicks = 0
-    nn = deepcopy(init_val)
+    if init_val == 0:  # if we start on 0, don't count the first click
+        clicks -= 1
 
     while num > 0:
         init_val -= 1
@@ -52,9 +53,6 @@ def countdown_left(num, init_val):
             clicks += 1
 
         num -= 1
-
-    if nn == 0:  # if we land on 0, don't count the last click
-        clicks -= 1
 
     return init_val, clicks
 
