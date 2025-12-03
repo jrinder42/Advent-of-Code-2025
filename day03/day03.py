@@ -36,5 +36,29 @@ print(f'Advent of Code Day 3 Answer Part 1: {sum(jolts_list)}')
 
 # Part 2
 
+def joltage_v2(num_list):
+    cap = 12
 
-print(f'Advent of Code Day 3 Answer Part 2: {1}')
+    if len(num_list) < cap:
+        return None
+
+    jolts = []
+    start = 0
+    for _ in range(cap):
+        end = len(num_list) - cap + 1
+        top = max(num_list[start:end])
+
+        jolts.append(top)
+
+        idx = num_list.index(top)
+        num_list.append(top)  # janky that we need this
+        num_list = num_list[idx + 1:]
+
+    return jolts
+
+jolts_list = []
+for line in lines:
+    jolts = joltage_v2(line)
+    jolts_list.append(literal_eval("".join(str(elem) for elem in jolts)))
+
+print(f'Advent of Code Day 3 Answer Part 2: {sum(jolts_list)}')
