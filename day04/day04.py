@@ -51,4 +51,30 @@ print(f'Advent of Code Day 4 Answer Part 1: {rolls_of_paper}')
 
 # Part 2
 
-print(f'Advent of Code Day 4 Answer Part 2: {1}')
+removal_steps = 0
+while True:
+    rolls_of_paper = 0
+    to_change = []
+    for i in range(arr.shape[0]):
+        for j in range(arr.shape[1]):
+            val = arr[i, j]
+            if val != "@":
+                continue
+
+            count = 0
+            for spot_val, (r, c) in spots((i, j), arr):
+                if spot_val == "@":
+                    count += 1
+
+            if count < 4:
+                to_change.append((i, j))
+                rolls_of_paper += 1
+
+    if not to_change:
+        break
+
+    for r, c in to_change:
+        removal_steps += 1
+        arr[r, c] = "."
+
+print(f'Advent of Code Day 4 Answer Part 2: {removal_steps}')
