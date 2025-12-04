@@ -4,8 +4,6 @@ Advent of Code 2025 - Day 4
 
 """
 
-from ast import literal_eval
-
 import numpy as np
 
 
