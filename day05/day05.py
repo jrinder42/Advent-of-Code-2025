@@ -52,18 +52,18 @@ for fresh_id_range in fresh_id_ranges:
         all_fresh.append([left, right])  # inclusive ranges as the question states
 
 # final step to merge any overlapping ranges
-all_fresh = sorted(all_fresh, key=lambda x: x[0])
+all_fresh = sorted(all_fresh, key=lambda x: (x[0], x[1]))
 
 final_fresh = [all_fresh[0]]
 for elem in all_fresh[1:]:
     left, right = final_fresh[-1]
-    if elem[0] <= left <= elem[1] and elem[0] <= right <= elem[1]:  # fully contained
+    if left <= elem[0] <= right and left <= elem[1] <= right:  # fully contained
         continue
 
     if left <= elem[0] <= right:
         final_fresh[-1][1] = max(right, elem[1])
     elif left <= elem[1] <= right:
-        final_fresh[-1][1] = min(elem[1], right)
+        final_fresh[-1][0] = min(elem[0], left)
     else:  # mutually exclusive
         final_fresh.append(elem)
 
