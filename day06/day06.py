@@ -18,6 +18,8 @@ with open("day06.txt", "r") as file:
 nums, special = rows[:-1], rows[-1]
 raw_nums, raw_special = raw[:-1], raw[-1]
 
+# Part 1
+
 n = len(nums[0])
 homework = defaultdict(list)
 for idx, row in enumerate(nums):
@@ -27,8 +29,6 @@ for idx, row in enumerate(nums):
 total = 0
 for idx, (key, value) in enumerate(homework.items()):
     total += eval(f" {special[idx]} ".join(value))
-
-# Part 1
 
 print(f'Advent of Code Day 6 Answer Part 1: {total}')
 
