@@ -133,3 +133,6 @@ dmypy.json
 
 # ingore all input files
 *.txt
+
+# special
+*/.gitignore
