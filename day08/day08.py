@@ -19,7 +19,7 @@ with open("day08.txt", "r") as file:
 # Part 1
 
 def euclidean_distance(p1, p2):
-    return math.sqrt((p1[0] - p2[0])** 2 + (p1[1] - p2[1])** 2 + (p1[2] - p2[2])** 2)
+    return math.sqrt((p1[0] - p2[0])** 2 + (p1[1] - p2[1])** 2 + (p1[2] - p2[2])**2)
 
 boxes = {}
 for box1, box2 in combinations(arr, 2):
