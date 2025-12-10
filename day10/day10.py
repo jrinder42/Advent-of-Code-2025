@@ -8,7 +8,7 @@ from ast import literal_eval
 import numpy as np
 from itertools import product
 import re
-
+from ortools.sat.python import cp_model
 
 
 machines = []
@@ -24,7 +24,7 @@ with open("day10.txt", "r") as file:
             {
                 "light_diagram": light_diagram,
                 "wiring_schematics": [elem for elem in wiring_schematics],
-                "joltage": literal_eval(joltage),
+                "joltage": [literal_eval(elem) for elem in re.findall(r'\d+', joltage)],
             }
         )
 
@@ -91,4 +91,47 @@ print(f'Advent of Code Day 10 Answer Part 1: {total}')
 
 # Part 2
 
-print(f'Advent of Code Day 10 Answer Part 2: {1}')
+# ILP (Integer Linear Programming) solver, effectively my original idea for Part 1 that I couldn't get working
+
+def build_system_v2(jolts, buttons):
+    jolt = np.array(jolts, dtype=int)
+    size = len(jolt)
+    parsed_buttons = _parse_buttons(buttons, size).T  # transpose to get correct shape
+
+    return parsed_buttons, jolt
+
+def solve(A, b):
+    A = np.array(A)
+    b = np.array(b)
+    n, m = A.shape
+
+    model = cp_model.CpModel()
+
+    # integer decision vars: x_i >= 0
+    x = [model.NewIntVar(0, 10**9, f"x{i}") for i in range(m)]
+
+    # add equality constraints A @ x = b
+    for i in range(n):
+        model.Add(sum(A[i, j] * x[j] for j in range(m)) == b[i])
+
+    model.Minimize(sum(x))  # minimize total presses
+
+    solver = cp_model.CpSolver()
+    solver.parameters.max_time_in_seconds = 5  # to be safe, set a time limit
+
+    status = solver.Solve(model)
+
+    if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
+        solution = np.array([solver.Value(var) for var in x], dtype=int)
+        return solution
+    else:
+        return None
+
+total = 0
+for machine in machines:
+    A, b = build_system_v2(machine["joltage"], machine["wiring_schematics"])
+
+    solution = solve(A, b)
+    total += sum(solution)
+
+print(f'Advent of Code Day 10 Answer Part 2: {total}')
