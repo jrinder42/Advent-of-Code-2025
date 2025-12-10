@@ -124,8 +124,8 @@ def solve(A, b):
     if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
         solution = np.array([solver.Value(var) for var in x], dtype=int)
         return solution
-    else:
-        return None
+
+    return None
 
 total = 0
 for machine in machines:
