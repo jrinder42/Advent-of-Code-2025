@@ -101,8 +101,6 @@ def build_system_v2(jolts, buttons):
     return parsed_buttons, jolt
 
 def solve(A, b):
-    A = np.array(A)
-    b = np.array(b)
     n, m = A.shape
 
     model = cp_model.CpModel()
