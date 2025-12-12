@@ -68,7 +68,7 @@ for new_region in new_regions:
         p = presents[idx]
         if freq:
             part_of_shape = np.where(p.shape == "#")[0]
-            total += freq * len(part_of_shape)
+            total += freq * p.shape.shape[0] * p.shape.shape[1]
 
     grid_area = new_region.grid[0] * new_region.grid[1]
     if total <= grid_area:
