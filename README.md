@@ -9,5 +9,15 @@ uv init
 uv sync --python 3.12
 ```
 
+For Rust
+
+```shell
+cargo run -p day01
+
+# or
+
+rustc main.rs -o day01 && ./day01
+```
+
 > [!NOTE]  
 > We should only include our solution .py script and nothing more

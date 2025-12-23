@@ -1,0 +1,10 @@
+[workspace]
+members = [
+    "day01",
+]
+resolver = "3"
+
+[workspace.package]
+edition = "2024"
+
+# Optional: add description, repository, etc. here
