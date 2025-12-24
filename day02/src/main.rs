@@ -31,7 +31,7 @@ fn generate_combinations(num_str: &str) -> bool {
         }
         */
         if n_full % n_half == 0 {
-            // need to convert to byte array as that is why chunks needs
+            // need to convert to byte array as that is what chunks needs
             let all_match = num_str.as_bytes()
                 .chunks(n_half)
                 .all(|chunk| chunk == base.as_bytes());
@@ -95,7 +95,7 @@ fn main() {
     println!("Advent of Code Day 2 Answer Part 1: {}", total_invalid_ids);
 
     // Part 2
-    
+
     invalid_ids.clear();
     for pair in &elf_ids {
         for num in pair.first..=pair.last {
