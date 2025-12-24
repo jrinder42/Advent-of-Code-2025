@@ -19,5 +19,11 @@ cargo run -p day01
 rustc main.rs -o day01 && ./day01
 ```
 
+to rebuild the Cargo.lock file run
+
+```shell
+cargo build
+```
+
 > [!NOTE]  
 > We should only include our solution .py script and nothing more
