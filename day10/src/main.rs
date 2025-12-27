@@ -136,6 +136,7 @@ fn main() {
         .collect();
 
     // Part 1
+
     let total_p1: u32 = machines.iter()
         .filter_map(solve_p1)
         .sum();
@@ -143,6 +144,7 @@ fn main() {
     println!("Advent of Code Day 10 Answer Part 1: {}", total_p1);
 
     // Part 2
+    
     let total_p2: i64 = machines.iter()
         .filter_map(solve_p2)
         .map(|sol| sol.iter().sum::<i64>())
