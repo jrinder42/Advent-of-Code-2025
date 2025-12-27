@@ -126,7 +126,6 @@ fn solve_p2(m: &Machine) -> Option<Vec<i64>> {
 }
 
 fn main() {
-    println!("Advent of Code Day 10");
     let input = fs::read_to_string("day10/day10.txt").expect("Read error");
 
     let machines: Vec<Machine> = input
@@ -144,7 +143,7 @@ fn main() {
     println!("Advent of Code Day 10 Answer Part 1: {}", total_p1);
 
     // Part 2
-    
+
     let total_p2: i64 = machines.iter()
         .filter_map(solve_p2)
         .map(|sol| sol.iter().sum::<i64>())
