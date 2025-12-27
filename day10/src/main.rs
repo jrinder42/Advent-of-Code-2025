@@ -126,7 +126,7 @@ fn solve_p2(m: &Machine) -> Option<Vec<i64>> {
 }
 
 fn main() {
-    let input = fs::read_to_string("day10/day10.txt").expect("Read error");
+    let input = fs::read_to_string("day10/day10.txt").unwrap();
 
     let machines: Vec<Machine> = input
         .lines()
